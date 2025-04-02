@@ -1,3 +1,8 @@
+---
+sidebar_position: 1
+slug: /
+---
+
 ## Visão Geral
 
 O **Allintra.Framework.Exchanges** é uma plataforma que padroniza a comunicação com múltiplas exchanges, permitindo que a aplicação interaja com qualquer corretora sem precisar lidar com suas particularidades. Ele abstrai as diferenças entre **APIs, formatos de dados e protocolos**, oferecendo uma interface única e consistente para todas as corretoras integradas.
