@@ -2,14 +2,11 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
   title: "Allintra desafio front-end",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
-  // Set the production url of your site here
   url: "https://your-docusaurus-site.example.com",
   baseUrl: "/",
   organizationName: "TiagoVillarm",
@@ -29,9 +26,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          editUrl:
-            "https://github.com/TiagoVillarim/desafio-front-end/tree/develop/",
-          remarkPlugins: [require("remark-mdx")],
         },
 
         theme: {
@@ -42,7 +36,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
       title: "Allintra desafio front-end",
@@ -53,9 +46,9 @@ const config: Config = {
       items: [
         {
           type: "docSidebar",
-          sidebarId: "tutorialSidebar",
+          sidebarId: "Sidebar",
           position: "left",
-          label: "Documentation",
+          label: "Docs",
         },
       ],
     },
@@ -66,8 +59,8 @@ const config: Config = {
           title: "More",
           items: [
             {
-              label: "GitHub",
-              href: "https://github.com/TiagoVillarim",
+              label: "Linkedin",
+              href: "https://www.linkedin.com/in/tiago-villarim-003633213/",
             },
           ],
         },
