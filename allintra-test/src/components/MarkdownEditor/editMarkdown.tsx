@@ -6,7 +6,7 @@ import { Button } from "../Button/button";
 type MarkdownEditorProps = {
   content: string;
   setContent: any;
-  fileKey: any;
+  fileKey: string;
 };
 
 export default function MarkdownEditor({
@@ -20,11 +20,12 @@ export default function MarkdownEditor({
   const [markdownModifications, setMarkdownModifications] = useState("");
 
   const handleChange = (e: any) => {
-    setContent(e.target.value);
+    setMarkdownModifications(e.target.value);
   };
 
   const SaveModificationsOnLocalstorage = () => {
-    const ParseContentToString = JSON.stringify(content);
+    setContent(markdownModifications);
+    const ParseContentToString = JSON.stringify(markdownModifications);
     localStorage.setItem(fileKey, ParseContentToString);
     setMarkdownModificationsSaved(!markdownModificationsSaved);
     setIsEditing(!isEditing);
@@ -36,13 +37,17 @@ export default function MarkdownEditor({
     }, 4000);
   }, [markdownModificationsSaved]);
 
+  useEffect(() => {
+    setMarkdownModifications(content);
+  }, [isEditing]);
+
   return (
     <div>
       {isEditing && (
         <div>
-          <h2>Editor:</h2>
+          <h2>Editar markdown:</h2>
           <textarea
-            value={content}
+            value={markdownModifications}
             onChange={handleChange}
             rows={10}
             style={{
@@ -57,10 +62,12 @@ export default function MarkdownEditor({
         onClick={() => setIsEditing(!isEditing)}
         title={isEditing ? "Finalizar Edição" : "Editar Markdown"}
       />
-      <Button
-        onClick={SaveModificationsOnLocalstorage}
-        title={"Salvar Edição"}
-      />
+      {isEditing && (
+        <Button
+          onClick={SaveModificationsOnLocalstorage}
+          title={"Salvar Edição"}
+        />
+      )}
       <Collapse in={markdownModificationsSaved}>
         <Alert sx={{ mb: 2 }}>Markdown modificado com sucesso!</Alert>
       </Collapse>
