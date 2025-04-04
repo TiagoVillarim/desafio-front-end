@@ -23,9 +23,29 @@ export default function MarkdownEditor({
     setMarkdownModifications(e.target.value);
   };
 
+  const ParseContentToString = JSON.stringify(markdownModifications);
+
+  const formatter = new Intl.DateTimeFormat("pt-Br", {
+    dateStyle: "long",
+    timeStyle: "short",
+  });
+  const formatted = formatter.format(new Date());
+
+  const SaveModificationsInLocalStorage = [
+    {
+      fileKey: fileKey,
+      modifiedContent: markdownModifications,
+      date: formatted,
+    },
+    { fileKey: fileKey, originalContent: content, date: formatted },
+  ];
+
   const SaveModificationsOnLocalstorage = () => {
     setContent(markdownModifications);
-    const ParseContentToString = JSON.stringify(markdownModifications);
+    localStorage.setItem(
+      "modifications",
+      JSON.stringify(SaveModificationsInLocalStorage)
+    );
     localStorage.setItem(fileKey, ParseContentToString);
     setMarkdownModificationsSaved(!markdownModificationsSaved);
     setIsEditing(!isEditing);

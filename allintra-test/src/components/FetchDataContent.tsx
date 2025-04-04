@@ -3,7 +3,15 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import MarkdownEditor from "./MarkdownEditor/editMarkdown";
 
-export default function FetchDataContent({ url, fileKey }) {
+type FetchDataContentProps = {
+  url?: string;
+  fileKey?: string;
+};
+
+export default function FetchDataContent({
+  url,
+  fileKey,
+}: FetchDataContentProps) {
   const [content, setContent] = useState("");
 
   useEffect(() => {
