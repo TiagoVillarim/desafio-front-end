@@ -1,10 +1,14 @@
-export const Button = ({ onClick, title }) => {
+import * as S from "./style";
+
+interface ButtonProps {
+  onClick: () => void;
+  title: string;
+}
+
+export const Button = ({ onClick, title }: ButtonProps) => {
   return (
-    <button
-      onClick={onClick}
-      style={{ marginTop: "30px", marginBottom: "20px" }}
-    >
+    <S.StyledButton onClick={onClick} type="button">
       {title}
-    </button>
+    </S.StyledButton>
   );
 };

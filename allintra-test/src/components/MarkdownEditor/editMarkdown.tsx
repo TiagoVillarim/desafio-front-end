@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import { Button } from "../Button/button";
+import * as S from "./style";
 
 type ModificationEntry = {
   id: string;
@@ -76,35 +77,33 @@ export default function MarkdownEditor({
   }, [content, isEditing]);
 
   return (
-    <div>
+    <S.Wrapper>
       {isEditing && (
-        <div>
+        <S.EditorContainer>
           <h2>Editar markdown:</h2>
-          <textarea
+          <S.EditorTextarea
             value={markdownModifications}
             onChange={handleChange}
             rows={10}
-            style={{
-              minHeight: 200,
-              minWidth: "100%",
-              fontFamily: "monospace",
-            }}
           />
-        </div>
+        </S.EditorContainer>
       )}
-      <Button
-        onClick={() => setIsEditing(!isEditing)}
-        title={isEditing ? "Finalizar Edição" : "Editar Markdown"}
-      />
-      {isEditing && (
+
+      <S.ButtonGroup>
         <Button
-          onClick={SaveModificationsOnLocalstorage}
-          title={"Salvar Edição"}
+          onClick={() => setIsEditing(!isEditing)}
+          title={isEditing ? "Finalizar Edição" : "Editar Markdown"}
         />
-      )}
+        {isEditing && (
+          <Button
+            onClick={SaveModificationsOnLocalstorage}
+            title={"Salvar Edição"}
+          />
+        )}
+      </S.ButtonGroup>
       <Collapse in={markdownModificationsSaved}>
         <Alert sx={{ mb: 2 }}>Markdown modificado com sucesso!</Alert>
       </Collapse>
-    </div>
+    </S.Wrapper>
   );
 }
